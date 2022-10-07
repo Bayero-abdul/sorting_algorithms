@@ -12,13 +12,18 @@
  */
 typedef struct listint_s
 {
-    const int n;
-    struct listint_s *prev;
-    struct listint_s *next;
+	const int n;
+	struct listint_s *prev;
+	struct listint_s *next;
 } listint_t;
 
 /* swap function MACRO */
-#define SWAP(x, y) do { typeof(x) SWAP = x; x = y; y = SWAP; } while (0)
+#define SWAP(x, y) \
+do {\
+	typeof(x) SWAP = x;\
+	x = y;\
+	y = SWAP;\
+} while (0)
 
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);

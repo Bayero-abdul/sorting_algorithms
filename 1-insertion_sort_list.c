@@ -6,13 +6,12 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *temp = NULL, *walk = NULL, *next = NULL, *next_key = NULL;
+	listint_t *temp = NULL, *walk = NULL, *next = NULL;
 
 	if (*list == NULL || (*list)->next == NULL)
 		return;
 
 	walk = (*list)->next;
-	next_key = walk->next;
 	while (walk)
 	{
 		next = walk->next;
@@ -35,8 +34,6 @@ void insertion_sort_list(listint_t **list)
 			temp = walk->prev;
 			next = walk->next;
 		}
-		walk = next_key;
-		if (walk)
-			next_key = walk->next;
+		walk = walk->next;
 	}
 }

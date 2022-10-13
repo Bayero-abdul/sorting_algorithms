@@ -28,7 +28,7 @@ int partition(int *array, int p, int r, size_t size)
 			}
 		}
 	}
-	if (array[i + 1] != array[r])
+	if (array[i + 1] != array[r] || (i + 1) != r)
 	{
 		temp = array[i + 1];
 		array[i + 1] = array[r];
@@ -37,6 +37,7 @@ int partition(int *array, int p, int r, size_t size)
 	}
 	return (i + 1);
 }
+
 
 /**
  *sort - sorts the array
@@ -56,6 +57,7 @@ void sort(int *array, int p, int r, size_t size)
 		sort(array, q + 1, r, size);
 	}
 }
+
 
 /**
  *quick_sort - sorts an array of integers in ascending order

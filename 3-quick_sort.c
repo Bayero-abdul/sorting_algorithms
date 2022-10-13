@@ -28,7 +28,7 @@ int partition(int *array, int p, int r, size_t size)
 			}
 		}
 	}
-	if (array[i + 1] != array[r] || (i + 1) != r)
+	if (array[i + 1] != array[r] && r - p != 1)
 	{
 		temp = array[i + 1];
 		array[i + 1] = array[r];

@@ -1,20 +1,41 @@
 #include "sort.h"
 
-void swap(int *a, int *b);
-void sort(int *array, int p, int r, size_t size);
-int partition(int *array, int p, int r, size_t size);
-
-
 /**
- *quick_sort - sorts an array of integers in ascending order
- *using the Quick sort algorithm
- *@array: Array to be sorted
- *@size: Size of array
+ *partition - Devides an array into two partition
+ *@array: The array to be partitioned
+ *@p: first element index
+ *@r: last element index
+ *@size: main array size
+ *Return: pivot index
  */
-void quick_sort(int *array, size_t size)
+int partition(int *array, int p, int r, size_t size)
 {
-	sort(array, 0, size - 1, size);
+	int i, j, temp;
+	int pivot = array[r];
 
+	i = p - 1;
+	for (j = p; j < r; j++)
+	{
+		if (pivot >= array[j])
+		{
+			i++;
+			if (i != j)
+			{
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				print_array(array, size);
+			}
+		}
+	}
+	if (array[i + 1] != array[r])
+	{
+		temp = array[i + 1];
+		array[i + 1] = array[r];
+		array[r] = temp;
+		print_array(array, size);
+	}
+	return (i + 1);
 }
 
 /**
@@ -36,51 +57,14 @@ void sort(int *array, int p, int r, size_t size)
 	}
 }
 
-
 /**
- *partition - Devides an array into two partition
- *@array: The array to be partitioned
- *@p: first element index
- *@r: last element index
- *@size: main array size
- *Return: pivot index
+ *quick_sort - sorts an array of integers in ascending order
+ *using the Quick sort algorithm
+ *@array: Array to be sorted
+ *@size: Size of array
  */
-int partition(int *array, int p, int r, size_t size)
+void quick_sort(int *array, size_t size)
 {
-	int i, j;
-	int pivot = array[r];
+	sort(array, 0, size - 1, size);
 
-	i = p - 1;
-	for (j = p; j < r; j++)
-	{
-		if (pivot >= array[j])
-		{
-			i++;
-			if (i != j)
-			{
-				swap(&array[i], &array[j]);
-				print_array(array, size);
-			}
-		}
-	}
-	if (array[i + 1] != array[r])
-	{
-		swap(&array[i + 1], &array[r]);
-		print_array(array, size);
-	}
-	return (i + 1);
-}
-
-
-/**
- * swap - swaps two numbers
- * @a: number
- * @b: number
- */
-void swap(int *a, int *b)
-{
-	int temp = *a;
-
-	*a = *b;
-	*b = temp;
 }

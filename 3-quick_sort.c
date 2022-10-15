@@ -13,12 +13,11 @@ int partition(int *array, int p, int r, size_t size)
 	int i, j, temp;
 	int pivot = array[r];
 
-	i = p - 1;
+	i = p;
 	for (j = p; j < r; j++)
 	{
 		if (pivot > array[j])
 		{
-			i++;
 			if (i != j)
 			{
 				temp = array[i];
@@ -26,16 +25,17 @@ int partition(int *array, int p, int r, size_t size)
 				array[j] = temp;
 				print_array(array, size);
 			}
+			i++;
 		}
 	}
-	if (array[i + 1] != array[r] && (r - p))
+	if (array[i] != array[r])
 	{
-		temp = array[i + 1];
-		array[i + 1] = array[r];
+		temp = array[i];
+		array[i] = array[r];
 		array[r] = temp;
 		print_array(array, size);
 	}
-	return (i + 1);
+	return (i);
 }
 
 

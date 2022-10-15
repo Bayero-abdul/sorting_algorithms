@@ -3,58 +3,57 @@
 /**
  *partition - Devides an array into two partition
  *@array: The array to be partitioned
- *@p: first element index
+ *@l: first element index
  *@r: last element index
  *@size: main array size
  *Return: pivot index
  */
-int partition(int *array, int p, int r, size_t size)
+int partition(int *array, int l, int r, size_t size)
 {
-	int i, j, temp;
-	int pivot = array[r];
+	int temp;
+	int left = l, right = r;
+	int pivot = array[left];
 
-	i = p;
-	for (j = p; j < r; j++)
+	while (left < right)
 	{
-		if (pivot > array[j])
+		while (array[right] > pivot)
+			right--;
+		while (array[left] <= pivot)
+			left++;
+
+		if (left < right)
 		{
-			if (i != j)
-			{
-				temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-				print_array(array, size);
-			}
-			i++;
+			temp = array[left];
+			array[left] = array[right];
+			array[right] = temp;
+			print_array(array, size);
 		}
 	}
-	if (array[i] != array[r])
-	{
-		temp = array[i];
-		array[i] = array[r];
-		array[r] = temp;
-		print_array(array, size);
-	}
-	return (i);
+	temp = array[l];
+	array[l] = array[right];
+	array[right] = temp;
+	print_array(array, size);
+
+	return (right);
 }
 
 
 /**
  *sort - sorts the array
- *@p: first element index
- *@r: last element index
+ *@left: first element index
+ *@right: last element index
  *@array: Array to be sorted
  *@size: Size of array
  */
-void sort(int *array, int p, int r, size_t size)
+void sort(int *array, int left, int right, size_t size)
 {
 	int q;
 
-	if (p < r)
+	if (left < right)
 	{
-		q = partition(array, p, r, size);
-		sort(array, p, q - 1, size);
-		sort(array, q + 1, r, size);
+		q = partition(array, left, right, size);
+		sort(array, left, q - 1, size);
+		sort(array, q + 1, right, size);
 	}
 }
 

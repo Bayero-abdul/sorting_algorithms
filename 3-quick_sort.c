@@ -10,34 +10,24 @@
  */
 int partition(int *array, int l, int r, size_t size)
 {
-<<<<<<< HEAD
 	int temp, j;
 	int pivot = array[r];
 	int i = l - 1;
 
 	for (j = l; j < r; j++)
-=======
-	int temp;
-	int left = l, right = r;
-	int pivot = array[left];
-
-	while (left < right)
->>>>>>> 0ac97f1fa8fae0b95ca12fda29b6a1230dafa4b6
 	{
-		while (array[left] < pivot)
-			left++;
-		while (array[right] > pivot)
-            right--;
-
-		if (left < right)
+		if (pivot > array[j])
 		{
-			temp = array[left];
-			array[left] = array[right];
-			array[right] = temp;
-			print_array(array, size);
+			i++;
+			if (i != j)
+			{
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				print_array(array, size);
+			}
 		}
 	}
-<<<<<<< HEAD
 
 	if (array[i + 1] != array[r])
 	{
@@ -47,14 +37,6 @@ int partition(int *array, int l, int r, size_t size)
 		print_array(array, size);
 	}
 	return (i + 1);
-=======
-	temp = array[l];
-	array[l] = array[right];
-	array[right] = temp;
-	print_array(array, size);
-
-	return (right);
->>>>>>> 0ac97f1fa8fae0b95ca12fda29b6a1230dafa4b6
 }
 
 

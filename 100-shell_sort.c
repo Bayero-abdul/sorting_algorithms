@@ -1,6 +1,5 @@
 #include "sort.h"
 
-
 /**
  * shell_sort - sorts an array of integers in ascending order
  * using the Shell sort
@@ -11,7 +10,12 @@ void shell_sort(int *array, size_t size)
 {
 	int j, i, gap, temp, n = size;
 
-	for (gap = n / 3; gap >= 1; gap = gap / 3)
+
+	for (gap = 1; gap < (n / 3); )
+		gap = gap * 3 + 1;
+
+
+	for (; gap >= 1; gap = gap / 3)
 	{
 		for (j = gap; j < n; j = j + gap)
 		{

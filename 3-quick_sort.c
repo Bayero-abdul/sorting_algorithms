@@ -3,18 +3,18 @@
 /**
  *partition - Devides an array into two partition
  *@array: The array to be partitioned
- *@p: first element index
+ *@l: first element index
  *@r: last element index
  *@size: main array size
  *Return: pivot index
  */
-int partition(int *array, int p, int r, size_t size)
+int partition(int *array, int l, int r, size_t size)
 {
-	int i, j, temp;
+	int temp, j;
 	int pivot = array[r];
+	int i = l - 1;
 
-	i = p - 1;
-	for (j = p; j < r; j++)
+	for (j = l; j < r; j++)
 	{
 		if (pivot > array[j])
 		{
@@ -28,7 +28,8 @@ int partition(int *array, int p, int r, size_t size)
 			}
 		}
 	}
-	if (array[i + 1] != array[r] && r - p != 1)
+
+	if (array[i + 1] != array[r])
 	{
 		temp = array[i + 1];
 		array[i + 1] = array[r];
@@ -41,20 +42,20 @@ int partition(int *array, int p, int r, size_t size)
 
 /**
  *sort - sorts the array
- *@p: first element index
- *@r: last element index
+ *@left: first element index
+ *@right: last element index
  *@array: Array to be sorted
  *@size: Size of array
  */
-void sort(int *array, int p, int r, size_t size)
+void sort(int *array, int left, int right, size_t size)
 {
 	int q;
 
-	if (p < r)
+	if (left < right)
 	{
-		q = partition(array, p, r, size);
-		sort(array, p, q - 1, size);
-		sort(array, q + 1, r, size);
+		q = partition(array, left, right, size);
+		sort(array, left, q - 1, size);
+		sort(array, q + 1, right, size);
 	}
 }
 
